@@ -1,0 +1,23 @@
+package com.example.demo.threads;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.model.Customer;
+
+class MultipleThreadsFetchingCustomer {
+	
+	@Autowired
+	private CreateCustomers customers;
+	
+	List<Customer> list = customers.createCutomers();
+	
+	public static void main(String[] args) {
+		ExecutorService es = Executors.newFixedThreadPool(2);
+		es.execute(()->);
+	}
+
+}

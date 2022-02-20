@@ -1,0 +1,63 @@
+package com.example.demo.threads;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.model.Customer;
+
+class MultipleThreadsFetchingCustomer {
+	
+	@Autowired
+	private CreateCustomers customers;
+
+	List<Customer> list = customers.createCutomers();
+	
+	public void get() {
+		
+		
+		ExecutorService es = Executors.newFixedThreadPool(4);
+		
+		
+		es.execute(()->{
+			List<Customer> list1 = customers.fetchFromXtoY(list,1, 100);
+			for(Customer c:list1) {
+				System.out.println(c);
+			}
+		});
+		
+		
+		es.execute(()->{
+			List<Customer> list2 = customers.fetchFromXtoY(list,101, 200);
+			for(Customer c:list2) {
+				System.out.println(c);
+			}
+		});
+		
+		
+		es.execute(()->{
+			List<Customer> list3 = customers.fetchFromXtoY(list,201, 300);
+			for(Customer c:list3) {
+				System.out.println(c);
+			}
+		});
+		
+		
+		es.execute(()->{
+			List<Customer> list4 = customers.fetchFromXtoY(list,301, 400);
+			for(Customer c:list4) {
+				System.out.println(c);
+			}
+		});
+		
+		es.shutdown();
+	}
+	
+	public static void main(String[] args) {
+		MultipleThreadsFetchingCustomer fc = new MultipleThreadsFetchingCustomer();
+		fc.get();
+	}
+
+}

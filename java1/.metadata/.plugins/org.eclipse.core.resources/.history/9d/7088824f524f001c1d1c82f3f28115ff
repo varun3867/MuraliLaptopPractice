@@ -1,0 +1,24 @@
+package com.example.demo.controller;
+
+public class stackimp {
+	
+	
+	public static void main(String[] args) {
+		
+		String s="aaadsdafdsafd";
+		for(int i=0;i<s.length();i++) {
+			int count = 0;
+			for(int j=i+1;j<s.length();j++) {
+				char char1 = s.charAt(i); 
+				char char2 = s.charAt(j);
+				if(i == j)
+					count++;
+			}
+			
+			System.out.println(s.charAt(i)+" = "+ count);
+		}
+		
+	}
+		
+
+}
